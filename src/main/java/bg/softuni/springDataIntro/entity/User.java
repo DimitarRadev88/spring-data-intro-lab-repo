@@ -1,4 +1,4 @@
-package bg.softuni.springdataintro.models;
+package bg.softuni.springDataIntro.entity;
 
 import jakarta.persistence.*;
 
@@ -6,26 +6,19 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
-    private Long id;
+public class User extends BaseEntity {
     private String username;
     private Integer age;
     private Set<Account> accounts;
 
     public User() {}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public Long getId() {
-        return id;
+    public User(String username, Integer age) {
+        this.username = username;
+        this.age = age;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "id", unique = true)
+    @Column(name = "username", unique = true)
     public String getUsername() {
         return username;
     }
@@ -43,7 +36,7 @@ public class User {
         this.age = age;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<Account> getAccounts() {
         return accounts;
     }

@@ -1,4 +1,4 @@
-package bg.softuni.springdataintro.models;
+package bg.softuni.springDataIntro.entity;
 
 import jakarta.persistence.*;
 
@@ -6,22 +6,14 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "accounts")
-public class Account {
-    private Long id;
+public class Account extends BaseEntity {
     private BigDecimal balance;
     private User user;
 
     public Account() {}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Account(BigDecimal balance) {
+        this.balance = balance;
     }
 
     @Column(name = "balance")
@@ -33,7 +25,7 @@ public class Account {
         this.balance = balance;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {
         return user;

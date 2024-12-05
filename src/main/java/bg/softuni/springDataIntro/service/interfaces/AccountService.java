@@ -1,4 +1,4 @@
-package bg.softuni.springdataintro.services;
+package bg.softuni.springDataIntro.service.interfaces;
 
 import java.math.BigDecimal;
 
